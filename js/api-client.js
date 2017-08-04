@@ -50,7 +50,10 @@ ApiClient.prototype.callGet = function(path) {
         {
             url: path,
             method: 'GET',
-            headers: {Authorization: self.cognitoAuth.idToken}
+            headers: {
+                Authorization: self.cognitoAuth.idToken,
+                Accept: 'application/json'
+            }
         })
         .then(function(data) {
             console.log(data);
@@ -60,6 +63,33 @@ ApiClient.prototype.callGet = function(path) {
         });
 
     console.log("CALL CAREGIVER API");
+}
+
+ApiClient.prototype.callPost = function(path) {
+
+    var self = this;
+
+    var toSend = {"bodyparam": "bodyvalue"};
+
+    $.ajax(
+        {
+            url: path,
+            method: 'POST',
+            contentType: 'application/json',
+            headers: {
+                Authorization: self.cognitoAuth.idToken,
+                Accept: 'application/json'
+            },
+            data: JSON.stringify(toSend)
+        })
+        .then(function(data) {
+            console.log(data);
+        })
+        .fail(function() {
+            console.log('failed');
+        });
+
+    console.log("CALL POST API");
 }
 
 ApiClient.prototype.callPatientPostApi = function() {

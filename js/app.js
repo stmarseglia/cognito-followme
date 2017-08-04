@@ -25,7 +25,8 @@ Main.prototype.init = function() {
 
     this.client = new ApiClient(this.cognitoAuth);
 
-    $('#get-url').val('https://1pbwvz80qj.execute-api.eu-west-1.amazonaws.com/api/patients/updateparameter');
+    $('#get-url').val('https://1pbwvz80qj.execute-api.eu-west-1.amazonaws.com/api/followmebackend/webresources/ro.siveco.followme.followmebackend.patients');
+    $('#post-url').val('https://1pbwvz80qj.execute-api.eu-west-1.amazonaws.com/api/followmebackend/path/test?param=value');
 }
 
 Main.prototype.bindEvents = function() {
@@ -67,6 +68,10 @@ Main.prototype.bindEvents = function() {
 
     $("#get-btn").click(function() {
         self.client.callGet($('#get-url').val());
+    });
+
+    $("#post-btn").click(function() {
+        self.client.callPost($('#post-url').val());
     });
 
 
